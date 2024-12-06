@@ -1,0 +1,26 @@
+Mulai
+  |
+  v
+Login Admin
+  |
+  v
+Menu Utama
+  |-------------------------|
+  |                         |
+  v                         v
+Input Data Pengguna Baru    Input Data Katalog Produk
+  |                         |
+  v                         v
+Simpan Data ke Database     Simpan Data ke Database
+  |                         |
+  v                         v
+Pesan Sukses                Pesan Sukses
+  |                         |
+  v                         v
+Menu Utama                  Menu Utama
+  |
+  v
+Logout Admin
+  |
+  v
+Selesai
