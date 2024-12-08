@@ -9,43 +9,10 @@
 <body>
    <div class="container">
     <div class="mt-5">
-    <h1>Halo Admin</h1> 
-    <div class="table-responsive">
-        <form method="GET">
-            <div class="input-group mb-3">
-                <input type="text" name="lemari_nama" value="{{$cari}}" class="form-control" placeholder="Nama lemari" aria-label="Nama lemari" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari..</button>
-              </div>
-        </form>
-        <table class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>unit</th>
-            <th>ip</th>
-            <th>Actiom</th>
-          </tr>
-        </thead>
-        <tbody class="table-grup-divider">
-            @if ($data->count() == 0)
-            <tr>
-                <td colspan="5" class="text-center">Data <strong>{{$cari}}</strong> tidak Ditemukan </td>
-            </tr>                
-            @endif
-            @foreach ($data as $item)
-          <tr>
-            <td>{{ ($data ->currentpage()-1) * $data ->perpage() + $loop->index + 1 }}</td>
-            <td> {{$item->lemari_nama}}</td>
-            <td> {{$item->lemari_unit}}</td>
-            <td>{{$item->lemari_ip}}</td>
-            <td>Edit || Delete</td>
-          </tr>
-        </tbody>
-          @endforeach
-        </table>
-      </div>
-      {{ $data->links() }}
+        <h1>Halo Admin</h1>
+        <ol>
+            <li><a href="/lemari" class="btn btn-md3">List Lemari </a></li>
+        </ol> 
     </div>
    </div>
     

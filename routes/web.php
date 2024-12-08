@@ -18,11 +18,11 @@ Route::get('/', function () {
 // })->name('adminhome');
 
 Route::get('/beranda', [AdminController::class, 'index'])->name('adminhome');
+Route::get('/lemari', [AdminController::class, 'lemari']);
+Route::get('/tambah_lemari', [AdminController::class, 'tambah_lemari']);
+Route::post('/add_lemari', [AdminController::class, 'add_lemari']);
 
 Route::get('/beranda/{id}', function (Request $request) {
-    // return view('admin/home', 
-    // ['title' => 'Halaman Admin '],
-    // ['data' => 'ini adalah halaman' .$request->id]);
     return redirect()->route ('adminhome');
 
 });

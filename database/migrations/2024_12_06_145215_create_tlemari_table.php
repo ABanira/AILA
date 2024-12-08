@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tlemari', function (Blueprint $table) {
             $table->id();
             $table->string('lemari_nama');
-            $table->string('lemari_unit')->unique();
+            $table->string('lemari_unit');
             $table->string('lemari_ip')->unique();
             $table->string('lemari_1');
             $table->string('lemari_2');
