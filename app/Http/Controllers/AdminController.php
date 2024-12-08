@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    function index()
+    function index(Request $request)
     {
-        $judul = 'Halaman Admin';
+        $cari = $request->lemari_nama;
+        $lemari  = DB::table('tlemari')->where('lemari_nama', 'LIKE', '%'.$cari.'%')->paginate(2);
         return view('admin/home', 
-        ['title' => $judul],
-        ['data' => 'ini '.$judul] 
+        ['title' => $lemari, 'data' => $lemari, 'cari' => $cari] 
     );
     }
 }
