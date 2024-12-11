@@ -16,13 +16,13 @@ class UserAdminSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->truncate();
-        
+
         DB::table('users')->insert([
             'name' => 'Admin',
             'nipp' => '68088',
             'jabatan' => 'ADMIN',
             'tlpn' => '085324385200',
-            'email' => '68088'.'@kai.id',
+            'email' => '68088' . '@kai.id',
             'password' => Hash::make('68088'),
         ]);
     }

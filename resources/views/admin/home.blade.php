@@ -11,7 +11,8 @@
     <div class="mt-5">
         <h1>Halo Admin</h1>
         <ol>
-            <li><a href="/lemari" class="btn btn-md3">List Lemari </a></li>
+            <li><a href="admin/lemari" class="btn btn-md3">List Lemari </a></li>
+            <li><a href="admin/users" class="btn btn-md3">List Users </a></li>
         </ol> 
     </div>
    </div>

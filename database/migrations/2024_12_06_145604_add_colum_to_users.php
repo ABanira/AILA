@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('nipp')->unique()->after('name');
             $table->string('tlpn')->unique()->after('name');
+            $table->string('jabatan')->after('name');
         });
     }
 
@@ -23,8 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-           $table->dropColumn('nipp');
-           $table->dropColumn('tlpn');
+            $table->dropColumn('nipp');
+            $table->dropColumn('tlpn');
+            $table->dropColumn('jabatan');
         });
     }
 };
