@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>AILA || Login</title>
+  <title>{{ $title }}</title>
   <!-- MDB icon -->
   <link rel="icon" href={{asset('storage/img/logo.png') }} type="image/x-icon" />
   <!-- Font Awesome -->
@@ -26,18 +26,32 @@
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
               <img src="{{asset('storage/img/logo.png') }}" alt="logo"  width="230px" height="151px" >
-              <div class="form-outline mb-2">
-                <input type="number" id="typeEmailX-2" class="form-control form-control-lg shadow-lg p-3 mb-5 bg-body rounded" />
-                <label class="form-label" for="typeEmailX-2">NIPP</label>
+
+              <!-- Start form login-->  
+              <form action="login" method="post">
+                @csrf
+                <div class="form-outline mb-2">
+                  <input type="number" id="typeEmailX-2" class="form-control form-control-lg shadow-lg p-3 mb-5 bg-body rounded" name="nipp"/>
+                  <label class="form-label" for="typeEmailX-2">NIPP</label>
+                </div>
+                <div class="form-outline mb-2">
+                  <input type="password" id="typePasswordX-2" class="form-control form-control-lg shadow-lg p-3 mb-5 bg-body rounded"  name="password"/>
+                  <label class="form-label" for="typePasswordX-2">Password</label>
+                </div>
+                <button class="btn btn-primary btn-lg btn-block shadow-lg p-3 mb-2" type="submit">MASUK</button>
+                <hr class="my-3">
+                <a href="/face" class="btn btn-sm" style="color: green;background-color: transparent;"><i class="fa fa-camera"></i> Masuk Menggunakan Wajah</a>
               </div>
-              <div class="form-outline mb-2">
-                <input type="password" id="typePasswordX-2" class="form-control form-control-lg shadow-lg p-3 mb-5 bg-body rounded" />
-                <label class="form-label" for="typePasswordX-2">Password</label>
-              </div>
-              <button class="btn btn-primary btn-lg btn-block shadow-lg p-3 mb-2" type="submit">MASUK</button>
-              <hr class="my-3">
-              <a href="/face" class="btn btn-sm" style="color: green;background-color: transparent;"><i class="fa fa-camera"></i> Masuk Menggunakan Wajah</a>
-            </div>
+            </form>
+         
+             <!-- Pesan Error-->
+                @if ($errors->any())
+                <div class="alert alert-danger col-md-12 text-center">
+                    @foreach ($errors->all() as $error)
+                    {{ $error }}
+                    @endforeach
+                </div>
+                @endif
           </div>
         </div>
       </div>
