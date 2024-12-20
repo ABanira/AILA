@@ -45,13 +45,11 @@
             </form>
          
              <!-- Pesan Error-->
-                @if ($errors->any())
-                <div class="alert alert-danger col-md-12 text-center">
-                    @foreach ($errors->all() as $error)
-                    {{ $error }}
-                    @endforeach
-                </div>
-                @endif
+             @if (session('message'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('message') }}
+                        </div>
+                    @endif
           </div>
         </div>
       </div>

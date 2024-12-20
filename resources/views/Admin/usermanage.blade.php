@@ -7,6 +7,7 @@
     <title>{{ $title }}</title>
 </head>
 <body>
+  
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -26,18 +27,11 @@
                         <p>NIPP : {{ auth()->user()->nipp ?? 'Tamu' }}</p>
                         <p>Role : {{ auth()->user()->role ?? 'Tidak diketahui' }}</p>
                     </div>
-
-                    <a href="/user">List User</a>
-                    <hr>
-                    
-                    <a href="/loker">List Loker Tool</a>
-                    <hr>
                     <a href="/logout">logout</a>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
+</div>  
 </body>
 </html>

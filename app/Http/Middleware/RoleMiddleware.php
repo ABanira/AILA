@@ -13,6 +13,6 @@ class RoleMiddleware
         if (Auth::check() && Auth::user()->role === $role) {
             return $next($request);
         }
-        return redirect('/')->withErrors(['error' => 'Unauthorized access']);
+        return redirect('/')->with('message', 'Anda Tidak dapat masuk ke halam ini.');
     }
 }

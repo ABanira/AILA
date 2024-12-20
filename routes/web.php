@@ -17,13 +17,19 @@ Route::get('/face', function () {
 
 //Routse login -> users
 Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/login', [AuthController::class, 'login']);
+
+//Routse logout -> users
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
 
 Route::middleware('auth')->group(
     function () {
         //Routse Admin -> users
         Route::get('/Admin', [AdminController::class, 'index'])->name('adminindex')->middleware('role:Admin');
+        Route::get('/user', [AdminController::class, 'user'])->name('usermanage')->middleware('role:Admin');
+        Route::get('/loker', [AdminController::class, 'loker'])->name('lokertool')->middleware('role:Admin');
 
 
         //Routse Spv -> index

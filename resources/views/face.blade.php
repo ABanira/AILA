@@ -49,11 +49,13 @@ canvas {
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="card col-12">
-          <label class="form-label">Login</label>
-          <p id="wajah">disini</p>
+          <hr class="my-2">
+            <a href="/login" class="btn btn-sm btn-block shadow-lg p-3 mb-2" style="color: green;background-color: transparent;">
+              <i class="fa fa-key"></i> Masuk Menggunakan Password</a>
           <div class="col-12">
                 <video id="video" width="600" height="450" autoplay muted></video>
           </div>
+          <hr class="my-2">
         </div>
       </div>
     </div>
