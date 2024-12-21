@@ -13,6 +13,11 @@ class AuthController extends Controller
         return view('/login', ['title' => 'AILA | LOGIN']);
     }
 
+    public function face()
+    {
+        return view('/face', ['title' => 'AILA | LOGIN']);
+    }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -35,7 +40,7 @@ class AuthController extends Controller
             }
         }
 
-        return back()->withErrors('NIPP Atau Password Salah!!');
+        return back()->with('message', 'NIPP Atau Password Salah!!');
     }
 
     public function logout()

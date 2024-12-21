@@ -41,7 +41,6 @@
                 <button class="btn btn-primary btn-lg btn-block shadow-lg p-3 mb-2" type="submit">MASUK</button>
                 <hr class="my-3">
                 <a href="/face" class="btn btn-sm" style="color: green;background-color: transparent;"><i class="fa fa-camera"></i> Masuk Menggunakan Wajah</a>
-              </div>
             </form>
          
              <!-- Pesan Error-->
