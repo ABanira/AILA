@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('unit_kerja')->nullable();
             $table->string('role')->nullable();
             $table->string('tlpn')->nullable()->unique();
-            $table->string('id_img')->nullable()->unique();
+            $table->string('id_img');
         });
     }
 

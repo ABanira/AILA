@@ -73,20 +73,21 @@
                             <div class="row d-flex">
                                 <div class="col-12">
                                     <div class="card-body">
-                                        <form action="add_user" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('updateuser', $user) }}" method="POST" enctype="multipart/form-data">
                                         @csrf
+                                        @method('PUT')
                                             <div class="form-container">
                                                 <div class="form-inputs">
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
-                                                                <input type="text" id="name-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="name" placeholder="Nama Lengkap" value="{{old('name')}}"/>
+                                                                <input type="text" id="name-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="name" placeholder="Nama Lengkap" value="{{  old('name', $user->name) }}"/>
                                                                 <label class="form-label" for="name-1">Nama</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
-                                                                <input type="number" id="nipp-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="nipp" placeholder="xxxxx" value="{{old('nipp')}}"/>
+                                                                <input type="number" id="nipp-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="nipp" placeholder="xxxxx" value="{{ old('nipp', $user->nipp) }}"/>
                                                                 <label class="form-label" for="nipp-1">NIPP</label>
                                                             </div>
                                                         </div>
@@ -94,13 +95,13 @@
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
-                                                                <input type="email" id="typeEmailX-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="email" placeholder="xxxx@mail.id" value="{{old('email')}}"/>
+                                                                <input type="email" id="typeEmailX-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="email" placeholder="xxxx@mail.id" value="{{ old('email', $user->email) }}"/>
                                                                 <label class="form-label" for="typeEmailX-1">Email</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
-                                                                <input type="number" id="number-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="tlpn" placeholder="085324xxxxxx" value="{{old('tlpn')}}"/>
+                                                                <input type="number" id="number-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="tlpn" placeholder="085324xxxxxx" value="{{ old('tlpn', $user->tlpn) }}"/>
                                                                 <label class="form-label" for="number-1">No Tlpn.</label>
                                                             </div>
                                                         </div>
@@ -110,10 +111,9 @@
                                                             <div class="mb-4">
                                                                 <label class="form-label" for="role-1">Role</label>
                                                                 <select name="role" id="role-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="role" placeholder="Hak Akses">
-                                                                    <option value="{{old('role')}}">{{old('role')}}</option>
-                                                                    <option value="Admin">Admin</option>
-                                                                    <option value="Spv">Spv</option>
-                                                                    <option value="Officer">Officer</option>
+                                                                    <option value="Admin" {{ old('role', $user->role) === 'Admin' ? 'selected' : '' }}>Admin</option>
+                                                                    <option value="Spv" {{ old('role', $user->role) === 'Spv' ? 'selected' : '' }}>Spv</option>
+                                                                    <option value="Officer" {{ old('role', $user->role) === 'Officer' ? 'selected' : '' }}>Officer</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -121,39 +121,54 @@
                                                             <div class="mb-4">
                                                                 <label class="form-label" for="unit_kerja-1">Unit Kerja</label>
                                                                 <select name="unit_kerja" id="unit_kerja-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="unit_kerja" placeholder="Unit Kerja">
-                                                                    <option value="{{old('unit_kerja')}}">{{old('unit_kerja')}}</option>
-                                                                    <option value="Fasilitas">Fasilitas</option>
-                                                                    <option value="Qc">Qc</option>
-                                                                    <option value="Ac">Ac</option>
-                                                                    <option value="Bubutan">Bubutan</option>
-                                                                    <option value="Listrik">Listrik</option>
-                                                                    <option value="Kereta1">Kereta1</option>
-                                                                    <option value="Kereta2">Kereta2</option>
-                                                                    <option value="Kereta3">Kereta3</option>
-                                                                    <option value="Kereta4">Kereta4</option>
-                                                                    <option value="Kereta5">Kereta5</option>
-                                                                    <option value="Kereta6">Kereta6</option>
+                                                                    <option value="Fasilitas" {{ old('role', $user->unit_kerja) === 'Fasilitas' ? 'selected' : '' }}>Fasilitas</option>
+                                                                    <option value="Qc" {{ old('role', $user->unit_kerja) === 'Qc' ? 'selected' : '' }}>Qc</option>
+                                                                    <option value="Ac" {{ old('role', $user->unit_kerja) === 'Ac' ? 'selected' : '' }}>Ac</option>
+                                                                    <option value="Ac" {{ old('role', $user->unit_kerja) === 'Bubutan' ? 'selected' : '' }}>Bubutan</option>
+                                                                    <option value="Listrik" {{ old('role', $user->unit_kerja) === 'Listrik' ? 'selected' : '' }}>Listrik</option>
+                                                                    <option value="kereta1" {{ old('role', $user->unit_kerja) === 'kereta1' ? 'selected' : '' }}>kereta1</option>
+                                                                    <option value="kereta2" {{ old('role', $user->unit_kerja) === 'kereta2' ? 'selected' : '' }}>kereta2</option>
+                                                                    <option value="kereta3" {{ old('role', $user->unit_kerja) === 'kereta3' ? 'selected' : '' }}>kereta3</option>
+                                                                    <option value="kereta4" {{ old('role', $user->unit_kerja) === 'kereta4' ? 'selected' : '' }}>kereta4</option>
+                                                                    <option value="kereta5" {{ old('role', $user->unit_kerja) === 'kereta5' ? 'selected' : '' }}>kereta5</option>
+                                                                    <option value="kereta6" {{ old('role', $user->unit_kerja) === 'kereta6' ? 'selected' : '' }}>kereta6</option>
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-12">
                                                             <div class="form-outline mb-4">
-                                                                <input type="password" id="password-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="password" placeholder="Password"/>
-                                                                <label class="form-label" for="password-1">Password</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-outline mb-4">
-                                                                <input type="file" id="img-1" accept=".jpg, .jpeg, .png" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="id_img" placeholder="Foto Pengguna" onchange="previewImage(event)" capture="camera"/>
+                                                                <input type="file" id="img-1" accept=".jpg, .jpeg, .png" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="id_img" placeholder="Foto Pengguna" onchange="previewImage(event)" capture="camera" />
                                                                 <label class="form-label" for="img-1">Foto</label>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="mb-4">
+                                                                <!-- Menampilkan Foto Lama -->
+                                                                <img id="img-2" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" 
+                                                                    src="{{ asset('storage/labels/' . $user->nipp . '/1.png') }}" alt="Foto Lama" 
+                                                                    style="max-width: 200px; max-height: 200px;" />
+                                                                <label class="form-label" for="img-2">Foto Lama</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="my-2">
+                                                    <div class="row">
+                                                        <!-- Input untuk Password -->
+                                                        <div class="mb-4">
+                                                            <label for="password-1">Password Baru</label>
+                                                            <input type="password" id="password-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="password" placeholder="Kosongkan jika tidak ada perubahan" />
+                                                        </div>
+
+                                                        <!-- Konfirmasi Password -->
+                                                        <div class="mb-4">
+                                                            <label for="password_confirmation">Konfirmasi Password Baru</label>
+                                                            <input type="password" id="password_confirmation" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="password_confirmation" placeholder="Konfirmasi password baru" />
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="image-preview">
-                                                    <img id="preview" src="" alt="Pratinjau Gambar"/>
+                                                   <img id="preview" src="{{ $user->id_img ? asset('storage/labels/' . $user->id_img) : '' }}" alt="Pratinjau Gambar" style="{{ $user->id_img ? '' : 'display: none;' }}" /> 
+                                                   <label class="form-label" for="preview">Foto Baru</label>
                                                 </div>
                                             </div>
                                             <hr class="my-5">
@@ -178,15 +193,17 @@
   <script defer src={{asset('storage/js/mdb.min.js') }}></script>
   <!-- PREVIEW IMG -->
   <script>
-        function previewImage(event) {
-            var reader = new FileReader();
-            reader.onload = function() {
-                var output = document.getElementById('preview');
-                output.src = reader.result;
-                output.style.display = 'block';
-            }
-            reader.readAsDataURL(event.target.files[0]);
+    function previewImage(event) { 
+        var file = event.target.files[0]; 
+        if (!file) { return; } 
+        var reader = new FileReader(); 
+        reader.onload = function () { 
+            var output = document.getElementById('preview'); 
+            output.src = reader.result; 
+            output.style.display = 'block'; }; 
+            reader.readAsDataURL(file); 
         }
     </script>
 </body>
 </html>
+

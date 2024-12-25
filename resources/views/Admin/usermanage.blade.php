@@ -83,8 +83,8 @@
                                     <td>{{ $user->role }}</td> 
                                     <td>{{ $user->unit_kerja }}</td> 
                                     <td>
-                                        <a href="http://">LIHAT</a> |
-                                        <a href="http://"> UBAH</a> | 
+                                        <a href="/viewuser/{{ $user->id }}" class="btn btn-info btn-sm"> <i class="fa fa-eye" aria-hidden="true"></i> LIHAT</a> |
+                                        <a href="/edituser/{{ $user->id }}" class="btn btn-warning btn-sm"> <i class="fa fa-edit" aria-hidden="true"></i> UBAH</a> | 
                                         <a href="#" onclick="deleteUser({{ $user->id }})" class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i> Hapus </a>
                                     </td>
                                 </tr> 

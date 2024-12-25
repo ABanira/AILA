@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <title>AILA || Login</title>
   <!-- MDB icon -->
   <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
@@ -15,7 +16,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
   <!-- FACE-API.JS -->
   <script defer src={{asset('storage/js/face-api.min.js') }}></script>
+  
+  <script>
+        // Mengirimkan data NIPP dari PHP ke JavaScript
+        const nippList = @json($nippList);
+    </script>
+
   <script defer src={{asset('storage/js/script.js')  }}></script>
+  
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -39,6 +47,21 @@ canvas {
     h2 {
       color: #333333;
     }
+    #countdown-overlay { 
+      display: none;
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background: rgba(0, 0, 0, 0.5);
+       z-index: 10;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       color: white;
+       font-size: 1.5em;
+     }
   </style>
 
 </head>
@@ -53,9 +76,29 @@ canvas {
             <a href="/login" class="btn btn-sm btn-block shadow-lg p-3 mb-2" style="color: green;background-color: transparent;">
               <i class="fa fa-key"></i> Masuk Menggunakan Password</a>
           <div class="col-12">
-                <video id="video" width="600" height="450" autoplay muted></video>
+            <div style="position: relative; display: inline-block;">
+              <video id="video" autoplay muted width="600" height="450" ></video>
+              <div id="loading-overlay" style="
+                  display: none;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 10%;
+                  background: rgba(0, 0, 0, 0.5);
+                  z-index: 10;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  color: white;
+                  font-size: 1.5em;
+              ">
+                  Loading...
+              </div>
+            </div>
           </div>
           <hr class="my-2">
+
         </div>
       </div>
     </div>
