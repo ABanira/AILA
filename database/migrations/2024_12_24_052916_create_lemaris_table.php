@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('nama_lemari');
             $table->string('lokasi_unit');
-            $table->string('ip_control');
-            $table->string('laci_1');
-            $table->string('laci_2');
-            $table->string('laci_3');
-            $table->string('laci_4');
-            $table->string('laci_5');
-            $table->string('laci_6');
-            $table->string('laci_7');
-            $table->string('laci_8');
+            $table->string('ip_control')->unique();
+            $table->integer('laci_1')->nullable();
+            $table->integer('laci_2')->nullable();
+            $table->integer('laci_3')->nullable();
+            $table->integer('laci_4')->nullable();
+            $table->integer('laci_5')->nullable();
+            $table->integer('laci_6')->nullable();
+            $table->integer('laci_7')->nullable();
+            $table->integer('laci_8')->nullable();
             $table->timestamps();
         });
     }

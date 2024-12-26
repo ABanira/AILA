@@ -34,11 +34,15 @@
                         <p>NIPP : {{ auth()->user()->nipp ?? 'Tamu' }}</p>
                         <p>Role : {{ auth()->user()->role ?? 'Tidak diketahui' }}</p>
                     </div>
-
                     <a href="/user">List User</a>
                     <hr>
-                    
-                    <a href="/loker">List Loker Tool</a>
+                    <a href="/lemari">List Lemari alat</a>
+                    <hr>
+                    <a href="#">Riwayat Buka Laci</a>
+                    <hr>
+                    <a href="#">Riwayat Pinjam Alat</a>
+                    <hr>
+                    <a href="#">Kondisi Alat</a>
                     <hr>
                     <a href="/logout">logout</a>
                 </div>

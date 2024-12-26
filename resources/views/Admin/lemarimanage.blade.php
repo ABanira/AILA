@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -14,9 +15,9 @@
   <!-- MDB -->
   <link rel="stylesheet" href={{asset('storage/css/bootstrap-login-form.min.css') }} />
   <script>
-    function deleteUser(userId) {
-        if (confirm('Apakah Anda yakin ingin menghapus pengguna ini?')) {
-            fetch(`/delete_user/${userId}`, {
+    function deletelemari(lemariId) {
+        if (confirm('Apakah Anda yakin ingin menghapus lemari ini?')) {
+            fetch(`/delete_lemari/${lemariId}`, {
                 method: 'DELETE',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -25,18 +26,20 @@
             })
             .then(response => {
                 if (response.ok) {
-                    alert('User berhasil dihapus!');
+                    alert('lemari berhasil dihapus!');
                     location.reload();
                 } else {
-                    alert('Terjadi kesalahan saat menghapus user.');
+                    alert('Terjadi kesalahan saat menghapus lemari.');
                 }
             })
             .catch(error => {
-                alert('Terjadi kesalahan saat menghapus user.');
+                alert('Terjadi kesalahan saat menghapus lemari.');
             });
         }
     }
 </script>
+
+</head>
 </head>
 <body>
   
@@ -57,7 +60,7 @@
                     <a href="/logout">logout</a>
                     <hr class="my-4">
                         <div class="col-3">
-                            <a href="/tambah_user" class="btn btn-primary btn-block shadow-lg p-3 mb-2">
+                            <a href="/tambah_lemari" class="btn btn-primary btn-block shadow-lg p-3 mb-2">
                             <i class="fa fa-plus"></i> Tambah</a>
                         </div>
                     <hr class="my-4">
@@ -65,35 +68,32 @@
                         <table class="table table-striped table-hover table-border">
                             <thead>
                                 <th>NO</th>
-                                <th>NAMA</th>
-                                <th>NIPP</th>
-                                <th>ROLE</th>
+                                <th>TITTLE</th>
                                 <th>UNIT KERJA</th>
+                                <th>CONTROLER</th>
                                 <th>ACTION</th>
                             </thead>
                             <tbody>
-                                @foreach ($users as $index => $user) 
+                                @foreach ($lemaris as $index => $lemari) 
                                 <tr> 
-                                    <td>{{ $users->firstItem() + $index }}</td>
-                                    <td>{{ $user->name }}</td> 
-                                    <td>{{ $user->nipp }}</td> 
-                                    <td>{{ $user->role }}</td> 
-                                    <td>{{ $user->unit_kerja }}</td> 
+                                    <td>{{ $lemaris->firstItem() + $index }}</td>
+                                    <td>{{ $lemari->nama_lemari }}</td>
+                                    <td>{{ $lemari->lokasi_unit }}</td>
+                                    <td>{{ $lemari->ip_control }}</td>
                                     <td>
-                                        <a href="/{{ $user->id }}/viewuser" class="btn btn-info btn-sm"> <i class="fa fa-eye" aria-hidden="true"></i> LIHAT</a> |
-                                        <a href="/{{ $user->id }}/edituser" class="btn btn-warning btn-sm"> <i class="fa fa-edit" aria-hidden="true"></i> UBAH</a> | 
-                                        <a href="#" onclick="deleteUser({{ $user->id }})" class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i> Hapus </a>
+                                        <a href="/{{ $lemari->id }}/viewlemari" class="btn btn-info btn-sm"> <i class="fa fa-eye" aria-hidden="true"></i> LIHAT</a> |
+                                        <a href="/{{ $lemari->id }}/editlemari" class="btn btn-warning btn-sm"> <i class="fa fa-edit" aria-hidden="true"></i> UBAH</a> | 
+                                        <a href="#" onclick="deletelemari({{ $lemari->id }})" class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i> Hapus </a>
                                     </td>
                                 </tr> 
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $users->links() }}
+                        {{ $lemaris->links() }}   
                     </div>
                 </div>
-            </div>
         </div>
     </div>
-</div>
+</div>  
 </body>
 </html>

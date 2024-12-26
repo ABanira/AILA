@@ -32,15 +32,21 @@ Route::middleware('auth')->group(
         Route::get('/Admin', [AdminController::class, 'index'])->name('adminindex')->middleware('role:Admin');
         //Routse Admin -> users
         Route::get('/user', [AdminController::class, 'user'])->name('usermanage')->middleware('role:Admin');
-        Route::get('/viewuser/{id}', [AdminController::class, 'viewuser'])->name('viewuser')->middleware('role:Admin');
+        Route::get('/{id}/viewuser', [AdminController::class, 'viewuser'])->name('viewuser')->middleware('role:Admin');
         Route::get('/tambah_user', [AdminController::class, 'tambah_user'])->name('useradd')->middleware('role:Admin');
         Route::post('/add_user', [AdminController::class, 'store_user'])->middleware('role:Admin');
-        Route::get('/edituser/{user}', [AdminController::class, 'edituser'])->name('edituser')->middleware('role:Admin');
+        Route::get('/{user}/edituser', [AdminController::class, 'edituser'])->name('edituser')->middleware('role:Admin');
         Route::put('/updateuser/{user}', [AdminController::class, 'updateuser'])->name('updateuser')->middleware('role:Admin');
         Route::delete('/delete_user/{id}', [AdminController::class, 'destroy_user'])->middleware('role:Admin');
 
-        //Routse Admin -> lokers
-        Route::get('/loker', [AdminController::class, 'loker'])->name('lokertool')->middleware('role:Admin');
+        //Routse Admin -> lemari
+        Route::get('/lemari', [AdminController::class, 'lemari'])->name('lemarialat')->middleware('role:Admin');
+        Route::get('/{id}/viewlemari', [AdminController::class, 'viewlemari'])->name('viewlemari')->middleware('role:Admin');
+        Route::get('/tambah_lemari', [AdminController::class, 'tambah_lemari'])->name('lemariadd')->middleware('role:Admin');
+        Route::post('/add_lemari', [AdminController::class, 'store_lemari'])->middleware('role:Admin');
+        Route::get('/{id}/editlemari', [AdminController::class, 'editlemari'])->name('editlemari')->middleware('role:Admin');
+        Route::put('/updatelemari/{id}', [AdminController::class, 'updatelemari'])->name('updatelemari')->middleware('role:Admin');
+        Route::delete('/delete_lemari/{id}', [AdminController::class, 'destroy_lemari'])->middleware('role:Admin');
 
 
         //Routse Spv -> index

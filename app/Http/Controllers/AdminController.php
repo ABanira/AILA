@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
 use App\Models\User;
+use App\Models\Lemari;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,16 +16,17 @@ class AdminController extends Controller
         return view('Admin/index', ['title' => 'Halaman Admin']);
     }
 
-    function viewuser($id)
-    {
-        $user = User::findOrFail($id);
-        return view('Admin/viewuser', compact('user'), ['title' => 'Halaman Rincian Pengguna',]);
-    }
-
+    // Management Users
     function user()
     {
         $users = User::paginate(5);
         return view('Admin/usermanage', compact('users'), ['title' => 'Halaman List Pengguna']);
+    }
+
+    function viewuser($id)
+    {
+        $user = User::findOrFail($id);
+        return view('Admin/viewuser', compact('user'), ['title' => 'Halaman Rincian Pengguna',]);
     }
 
     function tambah_user()
@@ -158,9 +160,129 @@ class AdminController extends Controller
         return redirect('user')->with('status', 'User berhasil disimpan!');
     }
 
-    //list Lemari Alat
-    function loker()
+    //Manage Lemari Alat
+    function lemari()
     {
-        return view('Admin/usermanage', ['title' => 'Halaman List Pengguna']);
+        $lemaris = Lemari::orderBy('lokasi_unit', 'asc')->paginate(5);
+        return view('Admin/lemarimanage', compact('lemaris'), ['title' => 'Halaman List Lemari']);
+    }
+
+    function tambah_lemari()
+    {
+        return view('Admin/lemariadd', ['title' => 'Halaman Tambah Lemari']);
+    }
+
+    function store_lemari(Request $request)
+    {
+        // Validasi data 
+        $request->validate([
+            'nama_lemari' => 'required|string|max:255',
+            'ip_control' => 'required|ip|unique:lemaris',
+            'lokasi_unit' => 'required|string|max:255',
+            'laci_1' => 'nullable|integer',
+            'laci_2' => 'nullable|integer',
+            'laci_3' => 'nullable|integer',
+            'laci_4' => 'nullable|integer',
+            'laci_5' => 'nullable|integer',
+            'laci_6' => 'nullable|integer',
+            'laci_7' => 'nullable|integer',
+            'laci_8' => 'nullable|integer',
+        ]);
+
+        // Tentukan status aktif berdasarkan nilai input 
+        $laci_1 = $request->input('laci_1', 2);
+        $laci_2 = $request->input('laci_2', 2);
+        $laci_3 = $request->input('laci_3', 2);
+        $laci_4 = $request->input('laci_4', 2);
+        $laci_5 = $request->input('laci_5', 2);
+        $laci_6 = $request->input('laci_6', 2);
+        $laci_7 = $request->input('laci_7', 2);
+        $laci_8 = $request->input('laci_8', 2);
+
+        // Simpan data ke database 
+        Lemari::create([
+            'nama_lemari' => $request->nama_lemari,
+            'ip_control' => $request->ip_control,
+            'lokasi_unit' => $request->lokasi_unit,
+            'laci_1' => $laci_1,
+            'laci_2' => $laci_2,
+            'laci_3' => $laci_3,
+            'laci_4' => $laci_4,
+            'laci_5' => $laci_5,
+            'laci_6' => $laci_6,
+            'laci_7' => $laci_7,
+            'laci_8' => $laci_8,
+        ]);
+        return redirect('lemari')->with('status', 'Lemari berhasil disimpan!');
+    }
+
+    public function destroy_lemari($id)
+    {
+        try {
+            $lemari = lemari::findOrFail($id);
+            $lemari->delete();
+
+            return response()->json(['status' => 'lemari berhasil dihapus!']);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'Terjadi kesalahan saat menghapus lemari.', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    function editlemari($id)
+    {
+        $lemari = Lemari::findOrFail($id);
+        return view('Admin/editlemari', compact('lemari'), ['title' => 'Halaman Edit Lemari',]);
+    }
+
+    function viewlemari($id)
+    {
+        $lemari = Lemari::findOrFail($id);
+        return view('Admin/viewlemari', compact('lemari'), ['title' => 'Halaman Edit Lemari',]);
+    }
+
+    public function updatelemari(Request $request, $id)
+    {
+        // Validasi data 
+        $request->validate([
+            'nama_lemari' => 'required|string|max:255',
+            'ip_control' => 'required|ip|unique:lemaris,ip_control,' . $id,
+            'lokasi_unit' => 'required|string|max:255',
+            'laci_1' => 'nullable|integer',
+            'laci_2' => 'nullable|integer',
+            'laci_3' => 'nullable|integer',
+            'laci_4' => 'nullable|integer',
+            'laci_5' => 'nullable|integer',
+            'laci_6' => 'nullable|integer',
+            'laci_7' => 'nullable|integer',
+            'laci_8' => 'nullable|integer',
+        ]);
+        // Tentukan status aktif berdasarkan nilai input 
+
+        $laci_1 = $request->input('laci_1', 2);
+        $laci_2 = $request->input('laci_2', 2);
+        $laci_3 = $request->input('laci_3', 2);
+        $laci_4 = $request->input('laci_4', 2);
+        $laci_5 = $request->input('laci_5', 2);
+        $laci_6 = $request->input('laci_6', 2);
+        $laci_7 = $request->input('laci_7', 2);
+        $laci_8 = $request->input('laci_8', 2);
+
+        // Update data di database 
+        $lemari = Lemari::findOrFail($id);
+        $lemari->update([
+            'nama_lemari' => $request->nama_lemari,
+            'ip_control' => $request->ip_control,
+            'lokasi_unit' => $request->lokasi_unit,
+            'laci_1' => $laci_1,
+            'laci_2' => $laci_2,
+            'laci_3' => $laci_3,
+            'laci_4' => $laci_4,
+            'laci_5' => $laci_5,
+            'laci_6' => $laci_6,
+            'laci_7' => $laci_7,
+            'laci_8' => $laci_8,
+        ]);
+
+        return redirect('lemari')->with('status', 'Lemari berhasil disimpan!');
     }
 }
