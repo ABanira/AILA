@@ -3,9 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Lemari;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -28,6 +29,10 @@ class User extends Authenticatable
         'unit_kerja',
     ];
 
+    public function lemari()
+    {
+        return $this->hasMany(Lemari::class, 'lokasi_unit', 'lokasi_unit');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

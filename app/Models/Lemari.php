@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Lemari extends Model
@@ -20,4 +21,13 @@ class Lemari extends Model
         'laci_7',
         'laci_8',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'unit_kerja', 'unit_kerja');
+    }
+    public function catalogs()
+    {
+        return $this->hasMany(Catalog::class, 'lemari_id');
+    }
 }

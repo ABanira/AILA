@@ -51,7 +51,10 @@ Route::middleware('auth')->group(
 
         //Routse Spv -> index
         Route::get('/Spv', [SpvController::class, 'index'])->name('spvindex')->middleware('role:Spv');
-
+        Route::get('/catalog', [SpvController::class, 'catalogspv'])->name('catalogspv')->middleware('role:Spv', 'check.unit.kerja');
+        Route::get('/editcatalog/{lemari_id}/{laci_id}', [SpvController::class, 'editCatalog'])->name('editcatalog')->middleware('role:Spv');
+        Route::post('/updateOrCreateCatalog', [SpvController::class, 'updateOrCreateCatalog'])->name('updateOrCreateCatalog')->middleware('role:Spv');
+        Route::put('/open_close/{lemariId}/{laciId}', [SpvController::class, 'open_closelaci'])->middleware('role:Spv');
 
         //Routse Officer -> index
         Route::get('/Officer', [OfficerController::class, 'index'])->name('officerindex')->middleware('role:Officer');

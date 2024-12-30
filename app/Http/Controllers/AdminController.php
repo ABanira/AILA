@@ -219,10 +219,27 @@ class AdminController extends Controller
     public function destroy_lemari($id)
     {
         try {
-            $lemari = lemari::findOrFail($id);
+            $lemari = Lemari::with('catalogs')->findOrFail($id);
+
+            // Hapus file dan folder berdasarkan lemari_id
+            $folderPath = storage_path('app/public/alats/' . $lemari->id);
+
+            if (is_dir($folderPath)) {
+                // Hapus semua file dalam folder
+                $files = glob($folderPath . '/*'); // Ambil semua file dalam folder
+                foreach ($files as $file) {
+                    if (is_file($file)) {
+                        unlink($file); // Hapus file
+                    }
+                }
+                // Hapus folder
+                rmdir($folderPath);
+            }
+
+            // Hapus lemari beserta data catalog terkait
             $lemari->delete();
 
-            return response()->json(['status' => 'lemari berhasil dihapus!']);
+            return response()->json(['status' => 'Lemari dan folder terkait berhasil dihapus!']);
         } catch (\Exception $e) {
             return response()->json(['status' => 'Terjadi kesalahan saat menghapus lemari.', 'error' => $e->getMessage()], 500);
         }
