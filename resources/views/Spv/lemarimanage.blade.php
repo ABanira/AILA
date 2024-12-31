@@ -38,7 +38,7 @@
             })
                 .then((response) => {
                     if (response.ok) {
-                        alert(`Operasi berhasil! Laci ${actionText.toLowerCase()}!`);
+                        alert(`Berhasil! Laci ${actionText.toLowerCase()}!`);
                         location.reload(); // Muat ulang halaman setelah sukses
                     } else {
                         alert(`Terjadi kesalahan saat mencoba ${actionText.toLowerCase()} laci.`);
@@ -110,7 +110,6 @@
                                     </svg>
                                     <div class="card-body">
                                         <p class="card-text">NAMA ALAT : {{ $catalog ? $catalog->nama_alat : 'KOSONG' }}</p>
-                                        <p class="card-text">{{ $catalog ? $catalog->status : 'KOSONG' }}</p>
                                         <p class="card-text">KONDISI : {{ $catalog ? $catalog->kondisi_alat : 'KOSONG' }}</p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">

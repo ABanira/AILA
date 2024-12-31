@@ -116,7 +116,6 @@ class SpvController extends Controller
         }
     }
 
-
     public function viewCatalog(Request $request, $lemari_id, $laci_id)
     {
         // Ambil data catalog berdasarkan lemari_id dan lokasi_laci
@@ -127,5 +126,32 @@ class SpvController extends Controller
             ->first();
 
         return view('Spv.viewcatalog', compact('lemaris', 'catalog', 'lemari_id', 'laci_id'), ['title' => 'Halaman List Lemari']);
+    }
+
+    public function logpinjam(Request $request)
+    {
+        // Mendapatkan unit_kerja dari pengguna yang sedang login
+        $unitKerja = $request->input('unit_kerja');
+        // Mengambil data CatalogAction dengan relasi ke tabel user
+        $query = CatalogAction::with(['user'])
+            ->whereHas('user', function ($query) use ($unitKerja) {
+                // Membatasi data berdasarkan unit_kerja
+                $query->where('unit_kerja', $unitKerja);
+            });
+
+        // Filter berdasarkan waktu jika ada
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            // Menambahkan waktu ke start_date dan end_date
+            $startDate = \Carbon\Carbon::parse($request->start_date)->startOfDay();
+            $endDate = \Carbon\Carbon::parse($request->end_date)->endOfDay();
+
+            // Filter berdasarkan tanggal yang sudah diubah
+            $query->whereBetween('created_at', [$startDate, $endDate]);
+        }
+        // Mendapatkan data yang sudah difilter dan diurutkan
+        $actions = $query->orderBy('created_at', 'desc')->paginate(5);
+
+        // Mengirim data ke view
+        return view('Spv/logpinjam', compact('actions'), ['title' => 'Halaman Log Pinjam']);
     }
 }

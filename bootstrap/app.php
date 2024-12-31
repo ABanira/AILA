@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\Guestlogin;
 use Illuminate\Foundation\Application;
 use App\Http\Middleware\CheckUnitKerja;
 use App\Http\Middleware\RoleMiddleware;
@@ -17,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'role' => RoleMiddleware::class,
             'check.unit.kerja' => CheckUnitKerja::class,
+            'guest' => Guestlogin::class,
         ]);
     })
 

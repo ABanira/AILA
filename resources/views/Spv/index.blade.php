@@ -37,9 +37,7 @@
                     <hr>
                     <a href="/catalog">List Lemari alat</a>
                     <hr>
-                    <a href="#">Riwayat Pinjam Alat</a>
-                    <hr>
-                    <a href="#">Kondisi Alat</a>
+                    <a href="/logpinjam">Riwayat Pinjam Alat</a>
                     <hr>
                     <a href="/logout">logout</a>
                 </div>

@@ -14,12 +14,12 @@ Route::get('/home', function () {
 });
 
 //Routse login  password-> users
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
 
 //Routse face -> users
-Route::get('/face', [AuthController::class, 'face'])->name('face');
-Route::post('/loginface', [AuthController::class, 'loginface'])->name('loginface');
+Route::get('/face', [AuthController::class, 'face'])->name('face')->middleware('guest');
+Route::post('/loginface', [AuthController::class, 'loginface'])->name('loginface')->middleware('guest');
 
 //Routse logout -> users
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -55,9 +55,6 @@ Route::middleware('auth')->group(
         //Routse Admin -> kontrol Kondisi alat kerja
         Route::get('/kondisialat', [AdminController::class, 'kondisialat'])->name('kondisialatadmin')->middleware('role:Admin');
 
-
-
-
         //Routse Spv -> index
         Route::get('/Spv', [SpvController::class, 'index'])->name('spvindex')->middleware('role:Spv');
         Route::get('/catalog', [SpvController::class, 'catalogspv'])->name('catalogspv')->middleware('role:Spv', 'check.unit.kerja');
@@ -66,7 +63,11 @@ Route::middleware('auth')->group(
         Route::post('/updateOrCreateCatalog', [SpvController::class, 'updateOrCreateCatalog'])->name('updateOrCreateCatalog')->middleware('role:Spv');
         Route::put('/open_close/{lemariId}/{laciId}/{userId}', [SpvController::class, 'open_closelaci'])->middleware('role:Spv');
 
+        //Routse Spv -> log lemari
+        Route::get('/logpinjam', [SpvController::class, 'logpinjam'])->name('logpinjamspv')->middleware('role:Spv', 'check.unit.kerja');
+
         //Routse Officer -> index
-        Route::get('/Officer', [OfficerController::class, 'index'])->name('officerindex')->middleware('role:Officer');
+        Route::get('/Officer', [OfficerController::class, 'index'])->name('officerindex')->middleware('role:Officer', 'check.unit.kerja');
+        Route::put('/pinjam_kembali/{lemariId}/{laciId}/{userId}/{catalogId}', [OfficerController::class, 'pinjam_kembali'])->middleware('role:Officer');
     }
 );

@@ -312,9 +312,14 @@ class AdminController extends Controller
 
         $query = CatalogAction::with(['user', 'lemari']);
 
-        // Filter berdasarkan waktu
+        // Filter berdasarkan waktu jika ada
         if ($request->filled('start_date') && $request->filled('end_date')) {
-            $query->whereBetween('created_at', [$request->start_date, $request->end_date]);
+            // Menambahkan waktu ke start_date dan end_date
+            $startDate = \Carbon\Carbon::parse($request->start_date)->startOfDay();
+            $endDate = \Carbon\Carbon::parse($request->end_date)->endOfDay();
+
+            // Filter berdasarkan tanggal yang sudah diubah
+            $query->whereBetween('created_at', [$startDate, $endDate]);
         }
 
         // Filter berdasarkan unit kerja

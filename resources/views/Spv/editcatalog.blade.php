@@ -101,7 +101,8 @@
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
-                                                                <input type="number" id="jumlahalat-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="jumlah" placeholder="jumlah Alat" value="{{ old('jumlah', $catalog ? $catalog->jumlah : '') }}" required>
+                                                                <input type="text" id="jumlahalat-1" class="text-danger form-control form-control-sm shadow-sm p-3 bg-body rounded" placeholder="Jumlah" value="1" disabled="disabled"/>
+                                                                <input type="hidden" name="jumlah" value="1">
                                                                 <label class="form-label" for="jumlahalat-1">Jumlah Alat</label>
                                                             </div>
                                                         </div>
