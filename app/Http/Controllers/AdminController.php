@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Lemari;
+use App\Models\Catalog;
 use Illuminate\Http\Request;
+use App\Models\CatalogAction;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -301,5 +304,47 @@ class AdminController extends Controller
         ]);
 
         return redirect('lemari')->with('status', 'Lemari berhasil disimpan!');
+    }
+
+    // log buka tutup laci lemari kerja
+    public function loglemari(Request $request)
+    {
+
+        $query = CatalogAction::with(['user', 'lemari']);
+
+        // Filter berdasarkan waktu
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $query->whereBetween('created_at', [$request->start_date, $request->end_date]);
+        }
+
+        // Filter berdasarkan unit kerja
+        if ($request->filled('unit_kerja')) {
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->where('unit_kerja', 'like', '%' . $request->unit_kerja . '%');
+            });
+        }
+
+        $actions = $query->orderBy('created_at', 'desc')->paginate(5);
+
+
+
+        return view('Admin/loglemari', compact('actions'), ['title' => 'Halaman Log Lemari',]);
+    }
+
+    // kontrol kondisi alat
+    public function kondisialat(Request $request)
+    {
+        // Ambil nilai pencarian kondisi_alat dari request
+        $conditionFilter = $request->input('condition');
+
+        // Query data catalog dengan filter kondisi_alat
+        $catalogs = Catalog::with('lemari')
+            ->when($conditionFilter, function ($query, $conditionFilter) {
+                $query->where('kondisi_alat', $conditionFilter);
+            })
+            ->orderBy('updated_at', 'desc')
+            ->paginate(10);
+
+        return view('Admin/kondisialat', compact('catalogs'), ['title' => 'Halaman kontrol Alat Kerja',]);
     }
 }

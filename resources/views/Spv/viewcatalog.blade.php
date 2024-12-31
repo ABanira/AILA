@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
   <!-- MDB -->
   <link rel="stylesheet" href={{asset('storage/css/bootstrap-login-form.min.css') }} />
-  <style>
+ <style>
       .form-container {
           display: flex;
           justify-content: space-between;
@@ -73,21 +73,17 @@
                             <div class="row d-flex">
                                 <div class="col-12">
                                     <div class="card-body">
-                                        <form action="{{ route('updateOrCreateCatalog') }}"  method="POST" enctype="multipart/form-data">
-                                        @csrf
                                             <div class="form-container">
                                                 <div class="form-inputs">
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
                                                                 <input type="text" class="text-danger form-control form-control-sm shadow-sm p-3 bg-body rounded" placeholder="Tittle Lemari" value="{{ $lemaris->nama_lemari}}" disabled="disabled"/>
-                                                                  <input type="hidden" name="lemari_id" value="{{ $lemari_id }}">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
                                                                 <input type="text" class="text-danger form-control form-control-sm shadow-sm p-3 bg-body rounded" placeholder="Tittle Lemari" value="Laci {{ $laci_id}}" disabled="disabled"/>
-                                                                <input type="hidden" name="lokasi_laci" value="laci_{{ $laci_id }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -95,54 +91,42 @@
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
-                                                                <input type="text" id="namaalat-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="nama_alat" placeholder="Nama Alat" value="{{ old('nama_alat', $catalog ? $catalog->nama_alat : '') }}" required>
+                                                                <input type="text" id="namaalat-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" placeholder="Nama Alat" value="{{ old('nama_alat', $catalog ? $catalog->nama_alat : '') }}" disabled="disabled"/>
                                                                 <label class="form-label" for="namaalat-1">Nama Alat</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
-                                                                <input type="number" id="jumlahalat-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="jumlah" placeholder="jumlah Alat" value="{{ old('jumlah', $catalog ? $catalog->jumlah : '') }}" required>
+                                                                <input type="number" id="jumlahalat-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" placeholder="jumlah Alat" value="{{ old('jumlah', $catalog ? $catalog->jumlah : '') }}" disabled="disabled"/>
                                                                 <label class="form-label" for="jumlahalat-1">Jumlah Alat</label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-6">
-                                                            <div class="mb-4">
-                                                                <label class="form-label" for="kondisi_alat-1">Kondisi Alat</label>
-                                                                <select name="kondisi_alat" id="kondisi_alat-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="kondisi_alat" placeholder="Unit Kerja">
-                                                                    <option value="{{ old('kondisi_alat', $catalog ? $catalog->kondisi_alat : '') }}">{{ old('kondisi_alat', $catalog ? $catalog->kondisi_alat : '') }}</option>
-                                                                    <option value="Baik">Baik</option>
-                                                                    <option value="Tidak Lengkap">Tidak Lengkap</option>
-                                                                    <option value="Rusak">Rusak</option>
-                                                                </select>
+                                                            <div class="form-outline mb-4">
+                                                                <input type="text" id="kondisi-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" placeholder="Kondisi Alat" value="{{ old('kondisi_alat', $catalog ? $catalog->kondisi_alat : '') }}" disabled="disabled"/>
+                                                                <label class="form-label" for="kondisi-1">Kondisi Alat</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
+                                                            <div class="form-outline mb-4">
+                                                                <input type="text" id="status-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" placeholder="Status Alat" value="{{ old('status_alat', $catalog ? $catalog->status_alat : '') }}" disabled="disabled"/>
+                                                                <label class="form-label" for="status-1">Status Alat</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
                                                             <div class="mb-4">
+                                                                <img id="img-1" class="form-control" alt="Pratinjau Gambar" src="{{ asset('storage/'.$catalog->img_alat) }}"/>
                                                                 <label class="form-label" for="img-1">Foto</label>
-                                                                <input type="file" id="img-1" accept=".jpg, .jpeg, .png" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="img_alat" placeholder="Foto alat" onchange="previewImage(event)" capture="camera"/>
-                                                                @if ($catalog && $catalog->img_alat)
-                                                                    <div class="mt-2">
-                                                                        <p>Gambar Saat Ini:</p>
-                                                                        <img src="{{ asset('storage/'.$catalog->img_alat) }}" alt="Gambar Alat" width="200">
-                                                                    </div>
-                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="image-preview">
-                                                    <img id="preview" src="" alt="Pratinjau Gambar"/>
-                                                </div>
-                                            </div>
                                             <hr class="my-5">
-                                            <div class="col-6">
-                                                <button type="submit" class="btn btn-success btn-block shadow-lg p-3 mb-2">
-                                                        <i class="fas fa-save"></i>  Simpan
-                                                    </button>
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -153,20 +137,7 @@
         </div>
     </div>
 </div>
-
   <!-- MDB -->
   <script defer src={{asset('storage/js/mdb.min.js') }}></script>
-  <!-- PREVIEW IMG -->
-  <script>
-        function previewImage(event) {
-            var reader = new FileReader();
-            reader.onload = function() {
-                var output = document.getElementById('preview');
-                output.src = reader.result;
-                output.style.display = 'block';
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    </script>
 </body>
 </html>

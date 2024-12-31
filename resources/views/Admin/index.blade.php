@@ -38,11 +38,9 @@
                     <hr>
                     <a href="/lemari">List Lemari alat</a>
                     <hr>
-                    <a href="#">Riwayat Buka Laci</a>
+                    <a href="/loglemari">Riwayat Buka Laci</a>
                     <hr>
-                    <a href="#">Riwayat Pinjam Alat</a>
-                    <hr>
-                    <a href="#">Kondisi Alat</a>
+                    <a href="/kondisialat">Kondisi Alat</a>
                     <hr>
                     <a href="/logout">logout</a>
                 </div>

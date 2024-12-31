@@ -1,5 +1,0 @@
-Users: id (PK), name, nipp, role(Spv,Officer), tlpn, unit_kerja
-Lemaris: id (PK), nama_lemari, lokasi_unit, IP_control, laci_1, laci_2, laci_3, laci_4, laci_5, laci_6, laci_7, laci_8
-Catalogs: id (PK), nama_alat, lemari_id (FK), lokasi_laci(FK), status, kondisi_alat, jumlah
-Peminjaman: id (PK), user_id (FK), catalog_id (FK), tanggal_pinjam, tanggal_kembali, status
-Pengembalian: id (PK), peminjaman_id (FK), tanggal_pengembalian

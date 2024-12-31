@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Lemari;
 use App\Models\Catalog;
 use Illuminate\Http\Request;
+use App\Models\CatalogAction;
+use Illuminate\Support\Facades\Log;
 
 class SpvController extends Controller
 {
@@ -82,27 +85,47 @@ class SpvController extends Controller
         return redirect()->route('catalogspv')->with('status', 'Catalog berhasil disimpan!');
     }
 
-    public function open_closelaci($lemariId, $laciId)
+    public function open_closelaci($lemariId, $laciId, $userId, Request $request)
     {
         try {
-            // Cari lemari berdasarkan ID
             $lemari = Lemari::findOrFail($lemariId);
+            $user = User::findOrFail($userId);
 
-            // Tentukan kolom laci yang akan diubah
-            $laciField = 'laci_' . $laciId;
+            // Ambil nama user dan nama lemari
+            $userName = $user->name;
+            $lemariName = $lemari->nama_lemari;
 
-            // Pastikan kolom laci ada dalam tabel
-            if (!isset($lemari->$laciField)) {
-                return response()->json(['message' => 'Laci tidak valid.'], 400);
-            }
-
-            // Toggle status laci: 0 menjadi 1, atau 1 menjadi 0
-            $lemari->$laciField = $lemari->$laciField == 0 ? 1 : 0;
+            // Toggle laci status
+            $currentStatus = $lemari->{'laci_' . $laciId};
+            $lemari->{'laci_' . $laciId} = $currentStatus == 0 ? 1 : 0;
             $lemari->save();
 
-            return response()->json(['message' => 'Laci berhasil diperbarui.', 'status' => $lemari->$laciField], 200);
+            // Simpan ke tabel catalog_actions
+            $actionDetail = "User {$userName} " . ($currentStatus == 1 ? "mengunci" : "membuka") . " laci {$laciId} pada lemari {$lemariName}.";
+            CatalogAction::create([
+                'catalog_id' => null,
+                'action_type' => $request->input('action_type'),
+                'action_detail' => $actionDetail,
+                'user_id' => $userId,
+            ]);
+
+            return response()->json(['status' => 'success', 'message' => 'Status laci berhasil diubah.']);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Terjadi kesalahan saat membuka/mengunci laci.', 'error' => $e->getMessage()], 500);
+            Log::error("Error in open_closelaci: " . $e->getMessage());
+            return response()->json(['status' => 'error', 'message' => 'Terjadi kesalahan.'], 500);
         }
+    }
+
+
+    public function viewCatalog(Request $request, $lemari_id, $laci_id)
+    {
+        // Ambil data catalog berdasarkan lemari_id dan lokasi_laci
+        $lemaris = Lemari::findOrFail($lemari_id);
+        $lokasi_laci = 'laci_' . $laci_id;
+        $catalog = Catalog::where('lemari_id', $lemari_id)
+            ->where('lokasi_laci', $lokasi_laci)
+            ->first();
+
+        return view('Spv.viewcatalog', compact('lemaris', 'catalog', 'lemari_id', 'laci_id'), ['title' => 'Halaman List Lemari']);
     }
 }

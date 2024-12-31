@@ -13,35 +13,43 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
   <!-- MDB -->
   <link rel="stylesheet" href={{asset('storage/css/bootstrap-login-form.min.css') }} />
-  <script>
-    function openclose(lemariId, laciId, event) {
-        // Mencegah tindakan default (perpindahan layar)
+<script>
+    function toggleLaci(lemariId, laciId, userId, currentStatus, event) {
+        // Mencegah tindakan default (reload halaman)
         event.preventDefault();
 
-        if (confirm('BUKA/KUNCI?')) {
-            fetch(`/open_close/${lemariId}/${laciId}`, {
-                method: 'PUT',
+        // Tentukan jenis aksi (buka/kunci)
+        const actionText = currentStatus === 0 ? 'Buka' : 'Kunci';
+        const confirmMessage = currentStatus === 0 
+            ? 'Laci terbuka!!' 
+            : 'Pastikan laci tertutup saat mengunci!!';
+
+        if (confirm(confirmMessage)) {
+            fetch(`/open_close/${lemariId}/${laciId}/${userId}`, {
+                method: 'PUT', // Gunakan metode PUT
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Content-Type': 'application/json'
-                }
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action_type: 'manual', // Jenis tindakan
+                    laci_status: currentStatus === 0 ? 1 : 0, // Ubah status
+                }),
             })
-            .then(response => {
-                if (response.ok) {
-                    alert('Operasi berhasil! Pastikan laci tertutup saat mengunci.');
-                    location.reload();
-                } else {
-                    alert('Terjadi kesalahan saat membuka/mengunci laci.');
-                }
-            })
-            .catch(error => {
-                alert('Terjadi kesalahan saat membuka/mengunci laci.');
-            });
+                .then((response) => {
+                    if (response.ok) {
+                        alert(`Operasi berhasil! Laci ${actionText.toLowerCase()}!`);
+                        location.reload(); // Muat ulang halaman setelah sukses
+                    } else {
+                        alert(`Terjadi kesalahan saat mencoba ${actionText.toLowerCase()} laci.`);
+                    }
+                })
+                .catch((error) => {
+                    alert(`Terjadi kesalahan saat mencoba ${actionText.toLowerCase()} laci.`);
+                });
         }
     }
 </script>
-
-
   <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -84,7 +92,7 @@
                            <div class="col-sm-6"> 
                             <div class="form-outline mb-4"> 
                                 <input type="text" id="role-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" value="{{ $lemari->nama_lemari }}" disabled="disable"> 
-                                <label class="form-label" for="role-1">Tittle</label> 
+                                <label class="form-label" for="role-1">Lemari</label> 
                             </div> 
                         </div> 
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -101,22 +109,18 @@
                                         <image href="{{ $catalog ? asset('storage/alats/'.$lemari->id.'/laci_'.$i.'.png')  :  asset('storage/img/default.jpg') }}" x="0" y="0" height="225" width="100%"/>
                                     </svg>
                                     <div class="card-body">
-                                        <p class="card-text">NAMA ALAT : {{ $catalog ? $catalog->nama_alat : 'Nama Alat' }}</p>
-                                        <p class="card-text">{{ $catalog ? $catalog->status : 'Status' }}</p>
-                                        <p class="card-text">KONDISI : {{ $catalog ? $catalog->kondisi_alat : 'Kondisi' }}</p>
+                                        <p class="card-text">NAMA ALAT : {{ $catalog ? $catalog->nama_alat : 'KOSONG' }}</p>
+                                        <p class="card-text">{{ $catalog ? $catalog->status : 'KOSONG' }}</p>
+                                        <p class="card-text">KONDISI : {{ $catalog ? $catalog->kondisi_alat : 'KOSONG' }}</p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
-                                                <a href="/viewcatalog/{{ $catalog ? $catalog->id : '#' }}" type="button" class="btn btn-sm btn-outline-primary">View</a>&nbsp;
-                                                <a href="{{ route('editcatalog', ['lemari_id' => $lemari->id, 'laci_id' => $i]) }}" type="button" class="btn btn-sm btn-outline-danger">Edit</a>&nbsp;
-                                                <a href="#"
-   class="{{ $lemari->{'laci_'.$i} == 0 ? 'btn btn-sm btn-outline-success' : 'btn btn-sm btn-outline-danger' }}"
-   onclick="openclose({{ $lemari->id }}, {{ $i }}, event)">
-    {{ $lemari->{'laci_'.$i} == 0 ? 'Buka' : 'Kunci' }}
-</a>
-
-
+                                                <a href="{{ route('viewcatalog', ['lemari_id' => $lemari->id, 'laci_id' => $i]) }}" type="button" class="btn btn-sm btn-outline-primary">View</a>&nbsp;
+                                                <a href="{{ route('editcatalog', ['lemari_id' => $lemari->id, 'laci_id' => $i]) }}" type="button" class="btn btn-sm btn-outline-primary">Edit</a>&nbsp;
+                                                <a href="#" class="{{ $lemari->{'laci_'.$i} == 0 ? 'btn btn-sm btn-outline-success' : 'btn btn-sm btn-outline-danger' }}" onclick="toggleLaci({{ $lemari->id }}, {{ $i }}, {{ auth()->user()->id }}, {{ $lemari->{'laci_'.$i} }}, event)">
+                                                {{ $lemari->{'laci_'.$i} == 0 ? 'Buka' : 'Kunci' }}
+                                                </a>
                                             </div>
-                                            <small class="text-muted">{{ $catalog ? $catalog->jumlah : 'Jumlah alat' }} UNIT</small>
+                                            <small class="text-muted">{{ $catalog ? $catalog->jumlah : 'KOSONG' }} UNIT</small>
                                         </div>
                                     </div>
                                 </div>
