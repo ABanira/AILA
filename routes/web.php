@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SpvController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LemariController;
 use App\Http\Controllers\OfficerController;
 
 Route::get('/', function () {
@@ -24,6 +25,9 @@ Route::post('/loginface', [AuthController::class, 'loginface'])->name('loginface
 //Routse logout -> users
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+//Routse Control Lemari esp8266
+Route::get('/lemari-by-ip', [LemariController::class, 'getLemariByIP']);
+Route::post('/update-laci-status', [LemariController::class, 'updateLaciStatus']);
 
 
 Route::middleware('auth')->group(
