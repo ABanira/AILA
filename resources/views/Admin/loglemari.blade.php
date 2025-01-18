@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +34,50 @@
                     <a href="/logout">logout</a>
                     <hr class="my-4">
                     <!-- Form Filter -->
+=======
+@extends('template.header')
+  <body class="starter-page-page">
+    <header
+      id="header"
+      class="header dark-background d-flex flex-column">
+      <i class="header-toggle d-xl-none bi bi-list"></i>
+
+      <div class="profile-img">
+        <img
+          src="{{asset('storage/img/logo.png') }}"
+          class="img-fluid rounded-circle"  style="background-color: #fff;"/>
+      </div>
+      <nav
+        id="navmenu"
+        class="navmenu">
+        <ul>
+          <li>
+           <a href="/user">List User</a>
+          </li>
+          <li>
+            <a href="/lemari">List Lemari</a>
+          </li>
+          <li>
+            <a href="/loglemari" class="active">Riwayat Buka Laci</a>
+          </li>
+          <li>
+            <a href="/kondisialat">Kondisi Item</a>
+          </li>
+          <li>
+            <a href="/logout">logout</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+     <main class="main">
+      <!-- Page Title -->
+      <section>
+        <div class="container"
+          data-aos="fade-up"
+          data-aos-delay="100">
+          <div class="card-body">
+                    <hr class="my-4">
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                     <form method="GET" action="{{ route('loglemariadmin') }}">
                         <div class="row mb-3">
                             <div class="col-md-3">
@@ -53,8 +98,13 @@
                             </div>
                         </div>
                     </form>
+<<<<<<< HEAD
                     <div class="table">
                         <table class="table table-striped table-hover table-border">
+=======
+                    <div class="table-responsive">
+                      <table class="table table-striped table-hover table-border">
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                             <thead>
                                 <th>Tanggal</th>
                                 <th>Unit Kerja</th>
@@ -79,9 +129,25 @@
                          {{ $actions->links() }}
                     </div>
                 </div>
+<<<<<<< HEAD
             </div>
         </div>
     </div>
 </div>
 </body>
 </html>
+=======
+        </div>
+      </section>
+      <!-- /Hero Section -->
+    </main>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i></a>
+
+@extends('template.footer')
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)

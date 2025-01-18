@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,10 @@
   <!-- MDB -->
   <link rel="stylesheet" href={{asset('storage/css/bootstrap-login-form.min.css') }} />
 <script>
+=======
+@extends('template.header')
+    <script>
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
     function toggleLaci(lemariId, laciId, userId, currentStatus, event) {
         // Mencegah tindakan default (reload halaman)
         event.preventDefault();
@@ -50,7 +55,11 @@
         }
     }
 </script>
+<<<<<<< HEAD
   <style>
+=======
+    <style>
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -65,6 +74,7 @@
         }
       }
     </style>
+<<<<<<< HEAD
 </head>
 <body>
 
@@ -75,15 +85,56 @@
                 <div class="card-header">{{ $title }}</div>
 
                 <div class="card-body">
+=======
+  
+  <body class="starter-page-page">
+    <header
+      id="header"
+      class="header dark-background d-flex flex-column">
+      <i class="header-toggle d-xl-none bi bi-list"></i>
+
+      <div class="profile-img">
+        <img
+          src="{{asset('storage/img/logo.png') }}"
+          class="img-fluid rounded-circle"  style="background-color: #fff;"/>
+      </div>
+      <nav
+        id="navmenu"
+        class="navmenu">
+        <ul>
+          <li>
+           <a href="/catalog" class="active">Catalog</a>
+          </li>
+          <li>
+            <a href="/logpinjam">Riwayat Buka Lemari</a>
+          </li>
+          <li>
+            <a href="/logout">logout</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+     <main class="main">
+      <!-- Page Title -->
+      <section>
+        <div class="container"
+          data-aos="fade-up"
+          data-aos-delay="100">
+          <div class="card-body">
+              
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
+<<<<<<< HEAD
  
                     <h2>You are a {{ auth()->user()->name ?? 'Tamu' }}.</h2>
                     <p>Unit Kerja : {{ auth()->user()->unit_kerja ?? 'Tamu' }}.</p>
                     <a href="/logout">logout</a>
+=======
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                     <hr class="my-4">
                     {{ $lemaris->links() }}
                     <div class="album py-5 bg-light"> 
@@ -91,8 +142,13 @@
                            @foreach ($lemaris as $lemari) 
                            <div class="col-sm-6"> 
                             <div class="form-outline mb-4"> 
+<<<<<<< HEAD
                                 <input type="text" id="role-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" value="{{ $lemari->nama_lemari }}" disabled="disable"> 
                                 <label class="form-label" for="role-1">Lemari</label> 
+=======
+                                <label class="form-label" for="role-1">Lemari</label> 
+                                <input type="text" id="role-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" value="{{ $lemari->nama_lemari }}" disabled="disable"> 
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                             </div> 
                         </div> 
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -110,7 +166,18 @@
                                     </svg>
                                     <div class="card-body">
                                         <p class="card-text">NAMA ALAT : {{ $catalog ? $catalog->nama_alat : 'KOSONG' }}</p>
+<<<<<<< HEAD
                                         <p class="card-text">KONDISI : {{ $catalog ? $catalog->kondisi_alat : 'KOSONG' }}</p>
+=======
+                                        <p class="card-text">
+                                            KONDISI : 
+                                            <span class="
+                                                {{ $catalog ? ($catalog->kondisi_alat == 'Baik' ? 'badge rounded-pill bg-primary' : ($catalog->kondisi_alat == 'Rusak' ? 'badge rounded-pill bg-danger' : ($catalog->kondisi_alat == 'Tidak Lengkap' ? 'badge rounded-pill bg-warning' : 'text-muted'))) : 'text-muted' }}">
+                                                {{ $catalog ? $catalog->kondisi_alat : 'KOSONG' }}
+                                            </span>
+                                        </p>
+
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
                                                 <a href="{{ route('viewcatalog', ['lemari_id' => $lemari->id, 'laci_id' => $i]) }}" type="button" class="btn btn-sm btn-outline-primary">View</a>&nbsp;
@@ -131,6 +198,7 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
         </div>
     </div>
 </div>                                          
@@ -138,3 +206,17 @@
   <script defer src={{asset('storage/js/mdb.min.js') }}></script>
 </body>
 </html>
+=======
+      </section>
+      <!-- /Hero Section -->
+    </main>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i></a>
+
+@extends('template.footer')
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)

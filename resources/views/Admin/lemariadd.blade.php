@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +31,51 @@
                             <i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
                         </div>                        
                         @if ($errors->any()) 
+=======
+@extends('template.header')
+
+  <body class="starter-page-page">
+    <header
+      id="header"
+      class="header dark-background d-flex flex-column">
+      <i class="header-toggle d-xl-none bi bi-list"></i>
+
+      <div class="profile-img">
+        <img
+          src="{{asset('storage/img/logo.png') }}"
+          class="img-fluid rounded-circle"  style="background-color: #fff;"/>
+      </div>
+      <nav
+        id="navmenu"
+        class="navmenu">
+        <ul>
+          <li>
+           <a href="/user">List User</a>
+          </li>
+          <li>
+            <a href="/lemari" class="active">List Lemari</a>
+          </li>
+          <li>
+            <a href="/loglemari">Riwayat Buka Laci</a>
+          </li>
+          <li>
+            <a href="/kondisialat">Kondisi Item</a>
+          </li>
+          <li>
+            <a href="/logout">logout</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+     <main class="main">
+      <!-- Page Title -->
+      <section>
+        <div class="container"
+          data-aos="fade-up"
+          data-aos-delay="100">
+          <div class="card-body">
+                    @if ($errors->any()) 
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                         <hr class="my-4">
                             <div class="alert alert-danger d-flex align-items-center" role="alert">
                                 <svg>
@@ -46,7 +92,16 @@
                                 </ul> 
                                 </div>
                             </div>
+<<<<<<< HEAD
                         @endif
+=======
+                            <hr class="my-4">
+                        @endif
+                        <div class="col-3">
+                            <a href="/lemari" class="btn btn-warning">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
+                        </div>
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                     <hr class="my-4">
                     <section>
                         <div class="container">
@@ -201,6 +256,7 @@
                             </div>
                         </div>
                     </section>
+<<<<<<< HEAD
                 </div>
             </div>
         </div>
@@ -210,6 +266,18 @@
   <!-- MDB -->
   <script defer src={{asset('storage/js/mdb.min.js') }}></script>
   <script>
+=======
+                   <!-- /Hero Section -->
+    </main>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i></a>
+        <script>
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
     document.getElementById('satu').addEventListener('change', function() { 
         const label = document.getElementById('label_1');
         const hiddenInput = document.getElementById('laci_1');
@@ -291,5 +359,11 @@
                 hiddenInput.value = '2';
             } });
     </script>
+<<<<<<< HEAD
 </body>
 </html>
+=======
+
+
+@extends('template.footer')
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,6 +51,51 @@
                             <i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
                         </div>                        
                         @if ($errors->any()) 
+=======
+@extends('template.header')
+
+  <body class="starter-page-page">
+    <header
+      id="header"
+      class="header dark-background d-flex flex-column">
+      <i class="header-toggle d-xl-none bi bi-list"></i>
+
+      <div class="profile-img">
+        <img
+          src="{{asset('storage/img/logo.png') }}"
+          class="img-fluid rounded-circle"  style="background-color: #fff;"/>
+      </div>
+      <nav
+        id="navmenu"
+        class="navmenu">
+        <ul>
+          <li>
+           <a href="/user" class="active">List User</a>
+          </li>
+          <li>
+            <a href="/lemari">List Lemari</a>
+          </li>
+          <li>
+            <a href="/loglemari">Riwayat Buka Laci</a>
+          </li>
+          <li>
+            <a href="/kondisialat">Kondisi Item</a>
+          </li>
+          <li>
+            <a href="/logout">logout</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+     <main class="main">
+      <!-- Page Title -->
+      <section>
+        <div class="container"
+          data-aos="fade-up"
+          data-aos-delay="100">
+          <div class="card-body">
+                    @if ($errors->any()) 
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                         <hr class="my-4">
                             <div class="alert alert-danger d-flex align-items-center" role="alert">
                                 <svg>
@@ -66,7 +112,16 @@
                                 </ul> 
                                 </div>
                             </div>
+<<<<<<< HEAD
                         @endif
+=======
+                            <hr class="my-4">
+                        @endif
+                        <div class="col-3">
+                            <a href="/user" class="btn btn-warning">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
+                        </div>
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                     <hr class="my-4">
                     <section>
                         <div class="container">
@@ -141,6 +196,7 @@
                                                                 <label class="form-label" for="img-1">Foto</label>
                                                             </div>
                                                         </div>
+<<<<<<< HEAD
                                                         <div class="col-sm-12">
                                                             <div class="mb-4">
                                                                 <!-- Menampilkan Foto Lama -->
@@ -148,6 +204,25 @@
                                                                     src="{{ asset('storage/labels/' . $user->nipp . '/1.png') }}" alt="Foto Lama" 
                                                                     style="max-width: 200px; max-height: 200px;" />
                                                                 <label class="form-label" for="img-2">Foto Lama</label>
+=======
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="mb-4">
+                                                                    <!-- Menampilkan Foto Lama -->
+                                                                    <img id="img-2" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" 
+                                                                        src="{{ asset('storage/labels/' . $user->nipp . '/1.png') }}" alt="Foto Lama" 
+                                                                        style="max-width: 200px; max-height: 200px;" />
+                                                                    <label class="form-label" for="img-2">Foto Lama</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="mb-4">
+                                                                    <div class="image-preview mb-4">
+                                                                       <img id="preview" src="{{ $user->id_img ? asset('storage/labels/' . $user->id_img) : '' }}" alt="Pratinjau Gambar" style="max-width: 200px; max-height: 200px;{{ $user->id_img ? '' : 'display: none;' }}"/> 
+                                                                       <label class="form-label" for="preview">Foto Baru</label>
+                                                                    </div>
+                                                               </div>
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                                             </div>
                                                         </div>
                                                     </div>
@@ -166,10 +241,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
+<<<<<<< HEAD
                                                 <div class="image-preview">
                                                    <img id="preview" src="{{ $user->id_img ? asset('storage/labels/' . $user->id_img) : '' }}" alt="Pratinjau Gambar" style="{{ $user->id_img ? '' : 'display: none;' }}" /> 
                                                    <label class="form-label" for="preview">Foto Baru</label>
                                                 </div>
+=======
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                             </div>
                                             <hr class="my-5">
                                             <div class="col-6">
@@ -183,6 +261,7 @@
                             </div>
                         </div>
                     </section>
+<<<<<<< HEAD
                 </div>
             </div>
         </div>
@@ -193,6 +272,19 @@
   <script defer src={{asset('storage/js/mdb.min.js') }}></script>
   <!-- PREVIEW IMG -->
   <script>
+=======
+                   <!-- /Hero Section -->
+    </main>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i></a>
+      
+     <script>
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
     function previewImage(event) { 
         var file = event.target.files[0]; 
         if (!file) { return; } 
@@ -204,6 +296,11 @@
             reader.readAsDataURL(file); 
         }
     </script>
+<<<<<<< HEAD
 </body>
 </html>
 
+=======
+
+@extends('template.footer')
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)

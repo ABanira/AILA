@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +38,54 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="condition" class="form-label">Kondisi Alat</label>
+=======
+@extends('template.header')
+  <body class="starter-page-page">
+    <header
+      id="header"
+      class="header dark-background d-flex flex-column">
+      <i class="header-toggle d-xl-none bi bi-list"></i>
+
+      <div class="profile-img">
+        <img
+          src="{{asset('storage/img/logo.png') }}"
+          class="img-fluid rounded-circle"  style="background-color: #fff;"/>
+      </div>
+      <nav
+        id="navmenu"
+        class="navmenu">
+        <ul>
+          <li>
+           <a href="/user">List User</a>
+          </li>
+          <li>
+            <a href="/lemari">List Lemari</a>
+          </li>
+          <li>
+            <a href="/loglemari">Riwayat Buka Laci</a>
+          </li>
+          <li>
+            <a href="/kondisialat" class="active">Kondisi Item</a>
+          </li>
+          <li>
+            <a href="/logout">logout</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+     <main class="main">
+      <!-- Page Title -->
+      <section>
+        <div class="container"
+          data-aos="fade-up"
+          data-aos-delay="100">
+          <div class="card-body">
+                    <hr class="my-4">
+                    <form action="{{ route('kondisialatadmin') }}" method="GET" class="mb-4">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="condition" class="form-label">Kondisi Item</label>
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                 <select name="condition" class="form-control">
                                     <option value="">-- Pilih Kondisi --</option>
                                     <option value="Baik" {{ request('condition') === 'Baik' ? 'selected' : '' }}>Baik</option>
@@ -50,13 +99,22 @@
                             </div>
                         </div>
                     </form>
+<<<<<<< HEAD
                     <div class="table">
                         <table class="table table-striped table-hover table-border">
+=======
+                    <div class="table-responsive">
+                      <table class="table table-striped table-hover table-border">
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Lemari</th>
+<<<<<<< HEAD
                                     <th>Nama Alat</th>
+=======
+                                    <th>Nama Item</th>
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                     <th>Kondisi</th>
                                     <th>Lokasi Unit</th>
                                     <th>Lokasi Laci</th>
@@ -84,7 +142,11 @@
                                     </tr>
                                 @empty
                                     <tr>
+<<<<<<< HEAD
                                         <td colspan="7" class="text-center">Tidak ada data alat ditemukan.</td>
+=======
+                                        <td colspan="7" class="text-center">Tidak ada data item ditemukan.</td>
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -92,9 +154,25 @@
                         {{ $catalogs->links() }}
                     </div>
                 </div>
+<<<<<<< HEAD
             </div>
         </div>
     </div>
 </div>
 </body>
 </html>
+=======
+        </div>
+      </section>
+      <!-- /Hero Section -->
+    </main>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i></a>
+
+@extends('template.footer')
+>>>>>>> a68b19f (add tempalate boostrap for WebApp)
