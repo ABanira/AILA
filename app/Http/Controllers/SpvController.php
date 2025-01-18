@@ -149,7 +149,7 @@ class SpvController extends Controller
             $query->whereBetween('created_at', [$startDate, $endDate]);
         }
         // Mendapatkan data yang sudah difilter dan diurutkan
-        $actions = $query->orderBy('created_at', 'desc')->paginate(5);
+        $actions = $query->orderBy('created_at', 'desc')->paginate(15);
 
         // Mengirim data ke view
         return view('Spv/logpinjam', compact('actions'), ['title' => 'Halaman Log Pinjam']);

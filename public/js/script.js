@@ -2,7 +2,7 @@ const video = document.getElementById("video");
 
 // Load face-api.js models
 const BASE_URL = "{{ url('') }}"; // Replace dynamically if using Laravel Blade
-const MODEL_URL = "/models"; // Ensure this path serves your models correctly
+const MODEL_URL = "storage/models"; // Ensure this path serves your models correctly
 
 Promise.all([
     faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL),
@@ -29,7 +29,7 @@ function startWebcam() {
 
 // Load labeled face descriptions
 async function getLabeledFaceDescriptions() {
-    const labels = ["Bani"]; // Replace with your labels
+    const labels = @json($nipps); // Dapatkan labels yang diteruskan dari Laravel
     return Promise.all(
         labels.map(async (label) => {
             const descriptions = [];

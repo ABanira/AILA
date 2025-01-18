@@ -20,10 +20,18 @@ class AdminController extends Controller
     }
 
     // Management Users
-    function user()
+    public function user(Request $request)
     {
-        $users = User::paginate(5);
-        return view('Admin/usermanage', compact('users'), ['title' => 'Halaman List Pengguna']);
+        $query = $request->input('query');
+        if ($query) {
+            $users = User::where('name', 'like', '%' . $query . '%')
+                        ->orWhere('nipp', 'like', '%' . $query . '%')
+                        ->orWhere('email', 'like', '%' . $query . '%')
+                        ->simplePaginate(10);  // Simple pagination
+        } else {
+            $users = User::simplePaginate(10);  // Simple pagination
+        }
+        return view('Admin.usermanage', compact('users', 'query'), ['title' => 'Halaman List Pengguna']);
     }
 
     function viewuser($id)
@@ -164,10 +172,25 @@ class AdminController extends Controller
     }
 
     //Manage Lemari Alat
-    function lemari()
+    public function lemari(Request $request)
     {
-        $lemaris = Lemari::orderBy('lokasi_unit', 'asc')->paginate(5);
-        return view('Admin/lemarimanage', compact('lemaris'), ['title' => 'Halaman List Lemari']);
+        // Ambil query pencarian dari input
+        $query = $request->input('query');
+    
+        // Jika ada query pencarian, lakukan pencarian berdasarkan lokasi_unit, nama_lemari, atau ip_control
+        if ($query) {
+            $lemaris = Lemari::where('lokasi_unit', 'like', '%' . $query . '%')
+                            ->orWhere('nama_lemari', 'like', '%' . $query . '%')
+                            ->orWhere('ip_control', 'like', '%' . $query . '%')
+                            ->orderBy('lokasi_unit', 'asc')
+                            ->simplePaginate(10);
+        } else {
+            // Jika tidak ada pencarian, ambil semua lemari dan paginasi
+            $lemaris = Lemari::orderBy('lokasi_unit', 'asc')->simplePaginate(10);
+        }
+    
+        // Kirim data ke view
+        return view('Admin.lemarimanage', compact('lemaris', 'query'), ['title' => 'Halaman List Lemari']);
     }
 
     function tambah_lemari()
@@ -329,7 +352,7 @@ class AdminController extends Controller
             });
         }
 
-        $actions = $query->orderBy('created_at', 'desc')->paginate(5);
+        $actions = $query->orderBy('created_at', 'desc')->simplePaginate(10);
 
 
 
@@ -348,7 +371,7 @@ class AdminController extends Controller
                 $query->where('kondisi_alat', $conditionFilter);
             })
             ->orderBy('updated_at', 'desc')
-            ->paginate(10);
+            ->simplePaginate(10);
 
         return view('Admin/kondisialat', compact('catalogs'), ['title' => 'Halaman kontrol Alat Kerja',]);
     }
