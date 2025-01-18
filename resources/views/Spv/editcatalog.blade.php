@@ -1,56 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>{{ $title }}</title>
-  <!-- MDB icon -->
-  <link rel="icon" href={{asset('storage/img/logo.png') }} type="image/x-icon" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
-  <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
-  <!-- MDB -->
-  <link rel="stylesheet" href={{asset('storage/css/bootstrap-login-form.min.css') }} />
-  <style>
-      .form-container {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-      }
-      .form-container .form-inputs {
-          flex: 1;
-          margin-right: 20px;
-      }
-      .form-container .image-preview {
-          flex: 1;
-          text-align: center;
-      }
-      .image-preview img {
-          max-width: 100%;
-          height: auto;
-          display: none;
-      }
-  </style>
-</head>
-<body>
-  
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">{{ $title }}</div>
-                <div class="card-body">
-                    <h2>You are a {{ auth()->user()->name ?? 'Tamu' }}.</h2>
-                    <a href="/logout">logout</a>
-                    <hr class="my-4">
-                        <div class="col-3">
-                            <a href="/catalog" class="btn btn-warning btn-block shadow-lg p-3 mb-2">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
-                        </div>                        
-=======
 @extends('template.header')
   
   <body class="starter-page-page">
@@ -85,7 +32,6 @@
           data-aos="fade-up"
           data-aos-delay="100">
           <div class="card-body">                     
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                         @if ($errors->any()) 
                         <hr class="my-4">
                             <div class="alert alert-danger d-flex align-items-center" role="alert">
@@ -105,13 +51,10 @@
                             </div>
                         @endif
                     <hr class="my-4">
-<<<<<<< HEAD
-=======
                         <div class="col-3">
                             <a href="/catalog" class="btn btn-warning">
                             <i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
                         </div>   
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                     <section>
                         <div class="container">
                             <div class="row d-flex">
@@ -139,37 +82,22 @@
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
-<<<<<<< HEAD
-                                                                <input type="text" id="namaalat-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="nama_alat" placeholder="Nama Alat" value="{{ old('nama_alat', $catalog ? $catalog->nama_alat : '') }}" required>
-                                                                <label class="form-label" for="namaalat-1">Nama Alat</label>
-=======
                                                                 <label class="form-label" for="namaalat-1">Nama Item</label>
                                                                 <input type="text" id="namaalat-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="nama_alat" placeholder="Nama Item" value="{{ old('nama_alat', $catalog ? $catalog->nama_alat : '') }}" required>
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
-<<<<<<< HEAD
-                                                                <input type="text" id="jumlahalat-1" class="text-danger form-control form-control-sm shadow-sm p-3 bg-body rounded" placeholder="Jumlah" value="1" disabled="disabled"/>
-                                                                <input type="hidden" name="jumlah" value="1">
-                                                                <label class="form-label" for="jumlahalat-1">Jumlah Alat</label>
-=======
                                                                 <label class="form-label" for="jumlahalat-1">Jumlah</label>
                                                                 <input type="text" id="jumlahalat-1" class="text-danger form-control form-control-sm shadow-sm p-3 bg-body rounded" placeholder="Jumlah" value="1" disabled="disabled"/>
                                                                 <input type="hidden" name="jumlah" value="1">
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <div class="mb-4">
-<<<<<<< HEAD
-                                                                <label class="form-label" for="kondisi_alat-1">Kondisi Alat</label>
-=======
                                                                 <label class="form-label" for="kondisi_alat-1">Kondisi Item</label>
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                                                 <select name="kondisi_alat" id="kondisi_alat-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="kondisi_alat" placeholder="Unit Kerja">
                                                                     <option value="{{ old('kondisi_alat', $catalog ? $catalog->kondisi_alat : '') }}">{{ old('kondisi_alat', $catalog ? $catalog->kondisi_alat : '') }}</option>
                                                                     <option value="Baik">Baik</option>
@@ -185,11 +113,7 @@
                                                                 @if ($catalog && $catalog->img_alat)
                                                                     <div class="mt-2">
                                                                         <p>Gambar Saat Ini:</p>
-<<<<<<< HEAD
-                                                                        <img src="{{ asset('storage/'.$catalog->img_alat) }}" alt="Gambar Alat" width="200">
-=======
                                                                         <img src="{{ asset('storage/'.$catalog->img_alat) }}" alt="Gambar Alat" style="max-width: 200px; max-height: 200px;" />
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                                                     </div>
                                                                 @endif
                                                             </div>
@@ -197,20 +121,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="image-preview">
-<<<<<<< HEAD
-                                                    <img id="preview" src="" alt="Pratinjau Gambar"/>
-=======
                                                     <img id="preview" src="" alt="Pratinjau Gambar" style="max-width: 200px; max-height: 200px;" />
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                                 </div>
                                             </div>
                                             <hr class="my-5">
                                             <div class="col-6">
-<<<<<<< HEAD
-                                                <button type="submit" class="btn btn-success btn-block shadow-lg p-3 mb-2">
-=======
                                                 <button type="submit" class="btn btn-success">
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                                         <i class="fas fa-save"></i>  Simpan
                                                     </button>
                                             </div>
@@ -222,20 +138,9 @@
                     </section>
                 </div>
             </div>
-<<<<<<< HEAD
-        </div>
-    </div>
-</div>
-
-  <!-- MDB -->
-  <script defer src={{asset('storage/js/mdb.min.js') }}></script>
-  <!-- PREVIEW IMG -->
-  <script>
-=======
         </main>      
                     
         <script>
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
         function previewImage(event) {
             var reader = new FileReader();
             reader.onload = function() {
@@ -245,11 +150,6 @@
             }
             reader.readAsDataURL(event.target.files[0]);
         }
-<<<<<<< HEAD
-    </script>
-</body>
-</html>
-=======
         </script>
        <!-- Scroll Top -->
     <a
@@ -259,4 +159,3 @@
       ><i class="bi bi-arrow-up-short"></i></a>
 
 @extends('template.footer')
->>>>>>> a68b19f (add tempalate boostrap for WebApp)

@@ -14,9 +14,8 @@
       name="viewport" />
     <title>AILA | Automatic Inventory Logger Access</title>
     <!-- Favicons -->
-    <link
-     href="{{asset('storage/img/logo.png')}}"
-      rel="icon" />
+    {{-- <link href="{{asset('storage/img/logo.png')}}" rel="icon" /> --}}
+    <link rel="icon" href={{asset('storage/img/logo.png') }} type="image/x-icon" />
     <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com"

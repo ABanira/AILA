@@ -1,37 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>{{ $title }}</title>
-  <!-- MDB icon -->
-  <link rel="icon" href={{asset('storage/img/logo.png') }} type="image/x-icon" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
-  <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
-  <!-- MDB -->
-  <link rel="stylesheet" href={{asset('storage/css/bootstrap-login-form.min.css') }} />
-</head>
-<body>
-  
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">{{ $title }}</div>
-                <div class="card-body">
-                    <h2>You are a {{ auth()->user()->name ?? 'Tamu' }}.</h2>
-                    <a href="/logout">logout</a>
-                    <hr class="my-4">
-                        <div class="col-3">
-                            <a href="/lemari" class="btn btn-warning btn-block shadow-lg p-3 mb-2">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
-                        </div>                        
-                        @if ($errors->any()) 
-=======
 @extends('template.header')
 
   <body class="starter-page-page">
@@ -75,7 +41,6 @@
           data-aos-delay="100">
           <div class="card-body">
                     @if ($errors->any()) 
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                         <hr class="my-4">
                             <div class="alert alert-danger d-flex align-items-center" role="alert">
                                 <svg>
@@ -92,16 +57,12 @@
                                 </ul> 
                                 </div>
                             </div>
-<<<<<<< HEAD
-                        @endif
-=======
                             <hr class="my-4">
                         @endif
                         <div class="col-3">
                             <a href="/lemari" class="btn btn-warning">
                             <i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
                         </div>
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                     <hr class="my-4">
                     <section>
                         <div class="container">
@@ -116,24 +77,14 @@
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
-<<<<<<< HEAD
-                                                                <input type="text" id="name-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="nama_lemari" placeholder="Nama Lemari" value="{{  old('nama_lemari', $lemari->nama_lemari) }}"/>
-                                                                <label class="form-label" for="name-1">Tittle</label>
-=======
                                                                 <label class="form-label" for="name-1">Tittle</label>
                                                                 <input type="text" id="name-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="nama_lemari" placeholder="Nama Lemari" value="{{  old('nama_lemari', $lemari->nama_lemari) }}"/>
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-outline mb-4">
-<<<<<<< HEAD
-                                                                <input type="text" id="number-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="ip_control" placeholder="192.xx.xx.xx" value="{{  old('ip_control', $lemari->ip_control) }}"/>
-                                                                <label class="form-label" for="number-1">IP Contoler</label>
-=======
                                                                 <label class="form-label" for="number-1">IP Contoler</label>
                                                                 <input type="text" id="number-1" class="form-control form-control-sm shadow-sm p-3 bg-body rounded" name="ip_control" placeholder="192.xx.xx.xx" value="{{  old('ip_control', $lemari->ip_control) }}"/>
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                                             </div>
                                                         </div>
                                                     </div>
@@ -185,11 +136,7 @@
                                             </div>
                                             <hr class="my-5">
                                             <div class="col-6">
-<<<<<<< HEAD
-                                                <button type="submit" class="btn btn-success btn-block shadow-lg p-3 mb-2">
-=======
                                                 <button type="submit" class="btn btn-success">
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                                                         <i class="fas fa-save"></i>  Simpan
                                                     </button>
                                             </div>
@@ -199,16 +146,6 @@
                             </div>
                         </div>
                     </section>
-<<<<<<< HEAD
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    <!-- MDB -->
-    <script defer src={{asset('storage/js/mdb.min.js') }}></script>
-    <script> 
-=======
                    <!-- /Hero Section -->
     </main>
 
@@ -219,7 +156,6 @@
       class="scroll-top d-flex align-items-center justify-content-center"
       ><i class="bi bi-arrow-up-short"></i></a>
         <script> 
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
     @for ($i = 1; $i <= 8; $i++) 
     document.getElementById('laci_{{ $i }}_switch')
     .addEventListener('change', function() { 
@@ -235,10 +171,5 @@
                 }); 
                 @endfor 
                 </script>
-<<<<<<< HEAD
-</body>
-</html>
-=======
 
 @extends('template.footer')
->>>>>>> a68b19f (add tempalate boostrap for WebApp)

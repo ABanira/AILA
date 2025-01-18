@@ -1,23 +1,4 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>{{ $title }}</title>
-  <!-- MDB icon -->
-  <link rel="icon" href={{asset('storage/img/logo.png') }} type="image/x-icon" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
-  <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
-  <!-- MDB -->
-  <link rel="stylesheet" href={{asset('storage/css/bootstrap-login-form.min.css') }} />
-=======
 @extends('template.header')
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
   <script>
     function deletelemari(lemariId) {
         if (confirm('Apakah Anda yakin ingin menghapus lemari ini?')) {
@@ -43,19 +24,6 @@
     }
 </script>
 
-<<<<<<< HEAD
-</head>
-</head>
-<body>
-  
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">{{ $title }}</div>
-
-                <div class="card-body">
-=======
   <body class="starter-page-page">
     <header
       id="header"
@@ -96,25 +64,10 @@
           data-aos="fade-up"
           data-aos-delay="100">
           <div class="card-body">
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-<<<<<<< HEAD
-                    @endif
- 
-                    <h2>You are a {{ auth()->user()->name ?? 'Tamu' }}.</h2>
-                    <a href="/logout">logout</a>
-                    <hr class="my-4">
-                        <div class="col-3">
-                            <a href="/tambah_lemari" class="btn btn-primary btn-block shadow-lg p-3 mb-2">
-                            <i class="fa fa-plus"></i> Tambah</a>
-                        </div>
-                    <hr class="my-4">
-                    <div class="table">
-                        <table class="table table-striped table-hover table-border">
-=======
                     <hr class="my-4">
                     @endif
                         <div class="col-3">
@@ -135,7 +88,6 @@
                     </form
                     <div class="table-responsive">
                       <table class="table table-striped table-hover table-border">
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                             <thead>
                                 <th>NO</th>
                                 <th>TITTLE</th>
@@ -160,15 +112,6 @@
                             </tbody>
                         </table>
                         {{ $lemaris->links() }}   
-<<<<<<< HEAD
-                    </div>
-                </div>
-        </div>
-    </div>
-</div>  
-</body>
-</html>
-=======
                      </div>
                 </div>
         </div>
@@ -184,4 +127,3 @@
       ><i class="bi bi-arrow-up-short"></i></a>
 
 @extends('template.footer')
->>>>>>> a68b19f (add tempalate boostrap for WebApp)

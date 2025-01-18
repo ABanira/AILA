@@ -1,35 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>{{ $title }}</title>
-  <!-- MDB icon -->
-  <link rel="icon" href={{asset('storage/img/logo.png') }} type="image/x-icon" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
-  <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
-  <!-- MDB -->
-  <link rel="stylesheet" href={{asset('storage/css/bootstrap-login-form.min.css') }} />
-  <style> .status-aktif { color: green; } .status-tidak-aktif { color: red; } </style>
-</head>
-<body>
-  
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">{{ $title }}</div>
-                <div class="card-body">
-                    <h2>You are a {{ auth()->user()->name ?? 'Tamu' }}.</h2>
-                    <a href="/logout">logout</a>
-                    <hr class="my-4">
-                        <div class="col-3">
-                            <a href="/lemari" class="btn btn-warning btn-block shadow-lg p-3 mb-2">
-=======
 @extends('template.header')
 
   <body class="starter-page-page">
@@ -93,7 +61,6 @@
                         @endif
                         <div class="col-3">
                             <a href="/lemari" class="btn btn-warning">
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
                             <i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
                         </div>
                     <hr class="my-4">
@@ -149,17 +116,6 @@
                             </div>
                         </div>
                     </section>
-<<<<<<< HEAD
-                </div>
-            </div>
-        </div>
-    </div>
-</div>                                                      
-  <!-- MDB -->
-  <script defer src={{asset('storage/js/mdb.min.js') }}></script>
-</body>
-</html>
-=======
                 </section>
                    <!-- /Hero Section -->
     </main>
@@ -172,4 +128,3 @@
       ><i class="bi bi-arrow-up-short"></i></a>
 
 @extends('template.footer')
->>>>>>> a68b19f (add tempalate boostrap for WebApp)
